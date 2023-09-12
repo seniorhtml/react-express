@@ -1,0 +1,14 @@
+{
+  "name": "book",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "back": "npm run dev --prefix back",
+    "front": "npm run dev --prefix front",
+    "dev": "concurrently \"npm run back\" \"npm run front\""
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.1"
+  }
+}

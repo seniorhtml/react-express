@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --font-family: 'Inter';
+}
+
+html {
+    * {
+        font-family: var(--font-family), sans-serif;
+        margin: initial;
+        padding: initial;
+        outline: none !important;
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    svg {
+        transition: all 0.35s ease-in-out;
+    }
+
+    & body {
+        background: #f4f4f4;
+        scroll-behavior: smooth;
+        font-style: normal;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        font-size: 16px;
+
+        input,
+        textarea {
+            @media (max-width: 600px) {
+                font-size: 16px !important;
+            }
+        }
+    }
+}
