@@ -1,5 +1,5 @@
 import { Layout } from 'antd';
-import Header from '@/components/Header.tsx';
+import Header from '@/components/Header';
 import { useRoutes } from 'react-router-dom';
 import router from '@/routes';
 

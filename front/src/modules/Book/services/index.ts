@@ -5,7 +5,7 @@ import type { IBook } from '../types';
 
 class BookService {
   static getBooks = createAsyncThunk(
-    'book/getBooks',
+    'news/getBooks',
     async ({ limit = 12, page = 1 }: { limit?: number; page: number }, { dispatch }) => {
       try {
         dispatch(setLoading(true));
@@ -20,7 +20,7 @@ class BookService {
     },
   );
 
-  static getBook = createAsyncThunk('book/getBook', async (id: string, { dispatch }) => {
+  static getBook = createAsyncThunk('news/getBook', async (id: string, { dispatch }) => {
     try {
       dispatch(setLoading(true));
       const { data } = await axios.get(`/books/${id}`);
@@ -31,7 +31,7 @@ class BookService {
   });
 
   static createBook = createAsyncThunk(
-    'book/createBook',
+    'news/createBook',
     async (book: IBook, { dispatch }) => {
       try {
         dispatch(setLoading(true));

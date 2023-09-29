@@ -1,6 +1,6 @@
 import { Pagination, Empty } from 'antd';
-import Book from '../components/Book.tsx';
-import BooksSkeleton from '../components/BooksSkeleton.tsx';
+import Book from '../components/Book';
+import BooksSkeleton from '../components/BooksSkeleton';
 import BookService from '../services';
 import { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '@/store';
@@ -36,7 +36,7 @@ function Books() {
               title={book.title}
               body={book.body}
               image={'https://picsum.photos/200/200'}
-              link={'/book/' + book.id}
+              link={'/news/' + book.id}
             />
           ))}
         </div>

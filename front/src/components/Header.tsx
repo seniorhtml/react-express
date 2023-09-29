@@ -7,7 +7,7 @@ const headerLinks = [
     label: 'Book',
   },
   {
-    path: '/book-create',
+    path: '/news-create',
     label: 'Create Book',
   },
 ];

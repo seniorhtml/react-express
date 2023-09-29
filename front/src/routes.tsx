@@ -1,9 +1,9 @@
 import type { RouteObject } from 'react-router-dom';
-import PBooks from '@/pages/PBooks.tsx';
-import PSingle from '@/pages/PSingle.tsx';
-import PRegister from '@/pages/PRegister.tsx';
-import PLogin from '@/pages/PLogin.tsx';
-import PCreate from '@/pages/PCreate.tsx';
+import PBooks from '@/pages/PBooks';
+import PSingle from '@/pages/PSingle';
+import PRegister from '@/pages/PRegister';
+import PLogin from '@/pages/PLogin';
+import PCreate from '@/pages/PCreate';
 
 const router: RouteObject[] = [
   {
@@ -11,11 +11,11 @@ const router: RouteObject[] = [
     element: <PBooks />,
   },
   {
-    path: '/book/:id',
+    path: '/news/:id',
     element: <PSingle />,
   },
   {
-    path: '/book-create',
+    path: '/news-create',
     element: <PCreate />,
   },
   {

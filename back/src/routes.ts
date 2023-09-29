@@ -1,10 +1,10 @@
 import { Application } from 'express';
 import { bookRoutes } from './modules/Book';
-import { authRoutes } from './modules/Auth';
+import { userRoutes } from './modules/User';
 
 export default class Routes {
-  constructor(app: Application) {
+  static init(app: Application) {
     app.use('/', bookRoutes);
-    app.use('/auth', authRoutes);
+    app.use('/auth', userRoutes);
   }
 }

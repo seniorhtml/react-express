@@ -1,4 +1,4 @@
-import SingleSkeleton from '../components/SingleSkeleton.tsx';
+import SingleSkeleton from '../components/SingleSkeleton';
 import BookService from '../services';
 import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/store';
