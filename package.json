@@ -1,5 +1,5 @@
 {
-  "name": "news",
+  "name": "react-express",
   "version": "1.0.0",
   "scripts": {
     "back": "npm run dev --prefix back",

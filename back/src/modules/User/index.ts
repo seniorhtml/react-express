@@ -1,5 +1,5 @@
-import routes from './routes';
+import UserRoutes from './routes';
 
-const userRoutes = new routes().router;
+const userRoutes = new UserRoutes().router;
 
 export { userRoutes };

@@ -1,4 +1,5 @@
 import { Avatar, Layout } from 'antd';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const headerLinks = [
@@ -7,12 +8,12 @@ const headerLinks = [
     label: 'Book',
   },
   {
-    path: '/news-create',
-    label: 'Create Book',
+    path: '/create-post',
+    label: 'Create Post',
   },
 ];
 
-function Header() {
+const Header = () => {
   return (
     <Layout.Header style={{ height: 'auto' }}>
       <div className={'container flex items-center justify-between py-3'}>
@@ -35,6 +36,6 @@ function Header() {
       </div>
     </Layout.Header>
   );
-}
+};
 
-export default Header;
+export default React.memo(Header);

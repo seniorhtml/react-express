@@ -2,17 +2,22 @@ import { Button, Checkbox, Form, Input, message } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/store';
-import AuthService from '../services';
-import type { ILoginForm } from '../types';
+import UserService from '../services';
+import React from 'react';
+import type { IUser } from '../types';
 
-function Login() {
+export interface ILoginForm extends IUser {
+  remember: string;
+}
+
+const Login = () => {
   const [toast, contextHolder] = message.useMessage();
   const [form] = Form.useForm();
-  const loading = useAppSelector((state) => state.auth.loading);
   const dispatch = useAppDispatch();
+  const loading = useAppSelector((state) => state.user.loading);
 
   function submit(values: never) {
-    dispatch(AuthService.login(values));
+    dispatch(UserService.login(values));
     form.resetFields();
     toast.open({
       type: 'success',
@@ -62,6 +67,6 @@ function Login() {
       </Form>
     </div>
   );
-}
+};
 
-export default Login;
+export default React.memo(Login);

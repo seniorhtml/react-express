@@ -1,19 +1,20 @@
 import { Request, Response } from 'express';
-import { generateAccessToken } from '@/utils';
+import Utils from '@/utils';
 import bcrypt from 'bcrypt';
-import userService from '../services';
+import UserService from '../services';
+import type { IUser } from '../models';
 
 interface IUserController {
   register(Request, Response): Promise<any>;
   login(Request, Response): Promise<any>;
-  getUsers(Request, Response): Promise<any>;
+  getUser(Request, Response): Promise<any>;
 }
 
-export default class userController implements IUserController {
+export default class UserController implements IUserController {
   private readonly _service;
 
   constructor() {
-    this._service = new userService();
+    this._service = new UserService();
   }
 
   public async register(req: Request, res: Response) {
@@ -41,17 +42,18 @@ export default class userController implements IUserController {
       if (!validPassword) {
         return res.status(400).json({ message: 'Введен неверный пароль' });
       }
-      const token = generateAccessToken(user._id);
+      const token = Utils.generateAccessToken(user._id);
       return res.status(200).json({ token });
     } catch (error) {
       res.status(500).json(error);
     }
   }
 
-  public async getUsers(req: Request, res: Response) {
+  public async getUser(req: Request, res: Response) {
     try {
-      const users = await this._service.getUsers();
-      return res.status(200).json(users);
+      const { username } = req.params;
+      const user = await this._service.getUser(username);
+      return res.status(200).json(user);
     } catch (error) {
       res.status(500).json(error);
     }

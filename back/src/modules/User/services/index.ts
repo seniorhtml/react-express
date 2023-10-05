@@ -1,34 +1,26 @@
-import userModel from '../models';
+import UserModel from '../models';
 import bcrypt from 'bcrypt';
-import type { IUserModel } from '../models';
+import type { IUser } from '../models';
 
 interface IUserService {
-  getUsers(): Promise<IUserModel>;
-  getUser(username: string): Promise<IUserModel>;
-  createUser(username: string, password: string): Promise<IUserModel>;
+  getUser(string): Promise<IUser>;
+  createUser(username: string, password: string): Promise<IUser>;
 }
 
-export default class userService implements IUserService {
-  private readonly model;
+export default class UserService implements IUserService {
+  private readonly _model;
 
   constructor() {
-    this.model = new userModel();
-  }
-
-  public async getUsers() {
-    const users = await this.model.find();
-    console.log(this.model);
-    return users;
+    this._model = new UserModel();
   }
 
   public async getUser(username: string) {
-    const user = await this.model.findOne({ username });
-    return user;
+    return await this._model.findOne({ username });
   }
 
   public createUser(username: string, password: string) {
     const hashPassword = bcrypt.hashSync(password, 7);
-    const user = new this.model({ username, password: hashPassword });
+    const user = new this._model({ username, password: hashPassword });
     return user.save();
   }
 }

@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setLoading } from '../store';
+import { setLoading, setUser } from '../store';
 import { axios } from '@/main';
 import type { IUser } from '../types';
 
-class AuthService {
+export default class UserService {
   static register = createAsyncThunk(
-    'auth/Register',
+    'user/Register',
     async (user: IUser, { dispatch }) => {
       try {
         dispatch(setLoading(true));
@@ -16,7 +16,7 @@ class AuthService {
     },
   );
 
-  static login = createAsyncThunk('auth/Login', async (user: IUser, { dispatch }) => {
+  static login = createAsyncThunk('user/Login', async (user: IUser, { dispatch }) => {
     try {
       dispatch(setLoading(true));
       await axios.post(`/auth/login`, user);
@@ -24,6 +24,17 @@ class AuthService {
       dispatch(setLoading(false));
     }
   });
-}
 
-export default AuthService;
+  static getUser = createAsyncThunk(
+    'user/GetUser',
+    async (username: string, { dispatch }) => {
+      try {
+        dispatch(setLoading(true));
+        const user = await axios.get(`/auth/user/${username}`);
+        dispatch(setUser(user.data));
+      } finally {
+        dispatch(setLoading(false));
+      }
+    },
+  );
+}

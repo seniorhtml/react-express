@@ -1,13 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { IBookState, IBook } from '../types';
+import type { IPost } from '../types';
 
-class BookSlice {
-  private readonly initialState: IBookState;
+export interface IPostState {
+  list: IPost[];
+  single: IPost | null;
+  count: number;
+  loading: boolean;
+}
+
+export default class PostSlice {
+  private readonly _initialState: IPostState;
 
   constructor() {
-    this.initialState = {
+    this._initialState = {
       list: [],
-      single: {} as IBook,
+      single: null,
       count: 0,
       loading: false,
     };
@@ -15,13 +22,13 @@ class BookSlice {
 
   public createSlice() {
     return createSlice({
-      name: 'book',
-      initialState: this.initialState,
+      name: 'post',
+      initialState: this._initialState,
       reducers: {
-        setBooks: (state, action: PayloadAction<IBook[]>) => {
+        setList: (state, action: PayloadAction<IPost[]>) => {
           state.list = action.payload;
         },
-        setBook: (state, action: { payload: IBook }) => {
+        setSingle: (state, action: { payload: IPost }) => {
           state.single = action.payload;
         },
         setCount: (state, action: PayloadAction<number>) => {
@@ -35,8 +42,4 @@ class BookSlice {
   }
 }
 
-const bookSlice = new BookSlice().createSlice();
-
-export const { setBooks, setBook, setCount, setLoading } = bookSlice.actions;
-
-export default bookSlice.reducer;
+export const { setList, setSingle, setCount, setLoading } = new PostSlice().createSlice().actions;

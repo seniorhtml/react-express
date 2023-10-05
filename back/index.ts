@@ -16,7 +16,7 @@ class Server {
     this.config();
   }
 
-  private config(): void {
+  private config() {
     Routes.init(this.app);
     this.app.use(express.json());
     this.app.use(

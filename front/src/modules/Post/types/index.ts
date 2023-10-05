@@ -1,5 +1,4 @@
-export interface IBook {
-  id: string;
+export interface IPost {
   title: string;
   body: string;
   image: string;

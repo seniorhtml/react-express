@@ -1,23 +1,23 @@
 import { Router } from 'express';
-import AuthController from '@/modules/User/controllers';
+import UserController from '@/modules/User/controllers';
 
-interface IUserRoutes {
-  router: Router;
-}
-
-export default class userRoutes implements IUserRoutes {
-  public readonly router;
+export default class UserRoutes {
+  private readonly _router;
   private readonly _controller;
 
   constructor() {
-    this.router = Router();
-    this._controller = new AuthController();
+    this._router = Router();
+    this._controller = new UserController();
     this.initializeRoutes();
   }
 
+  get router() {
+    return this._router;
+  }
+
   private initializeRoutes() {
-    this.router.post('/register', this._controller.register);
-    this.router.post('/login', this._controller.login);
-    this.router.get('/users', this._controller.getUsers);
+    this._router.post('/register', this._controller.register);
+    this._router.post('/login', this._controller.login);
+    this._router.get('/user/:username', this._controller.getUser);
   }
 }

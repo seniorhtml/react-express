@@ -2,17 +2,18 @@ import { Button, Form, Input, message } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/store';
-import AuthService from '../services';
+import UserService from '../services';
+import React from 'react';
 import type { IUser } from '../types';
 
-function Register() {
+const Register = () => {
   const [toast, contextHolder] = message.useMessage();
   const [form] = Form.useForm();
-  const loading = useAppSelector((state) => state.auth.loading);
   const dispatch = useAppDispatch();
+  const loading = useAppSelector((state) => state.user.loading);
 
   function submit(values: never) {
-    dispatch(AuthService.register(values));
+    dispatch(UserService.register(values));
     form.resetFields();
     toast.open({
       type: 'success',
@@ -55,6 +56,6 @@ function Register() {
       </Form>
     </div>
   );
-}
+};
 
-export default Register;
+export default React.memo(Register);

@@ -1,19 +1,21 @@
 import { model, Schema } from 'mongoose';
 
-export interface IUserModel {
-  user: { username: string; password: boolean };
+export interface IUser {
+   username: string;
+   password: string;
 }
 
-export default class userModel implements IUserModel {
-  public readonly user;
-
+export default class UserModel {
   constructor() {
-    this.user = model(
+    this.createModel();
+  }
+
+  private createModel() {
+    return model<IUser>(
       'user',
       new Schema({
         username: { type: String, unique: true, required: true },
-        password: { type: String, required: true },
-        sanjar: { type: String, required: true },
+        password: { type: String, required: true }
       }),
     );
   }
