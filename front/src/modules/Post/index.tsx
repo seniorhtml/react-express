@@ -1,4 +1,4 @@
-import Posts from './pages/Books';
+import Posts from './pages/Posts';
 import Create from './pages/Create';
 import Single from './pages/Single';
 import PostReducer from './store';
