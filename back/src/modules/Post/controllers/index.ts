@@ -7,13 +7,13 @@ interface IPostController {
   createPost(Request, Response): any;
 }
 
-export default class PostController implements IPostController{
+export default class PostController implements IPostController {
   private readonly _service;
-  
+
   constructor() {
     this._service = new PostService();
   }
-  
+
   public async getPosts(req: Request, res: Response) {
     try {
       const { page = 1, limit = 12 } = req.query;

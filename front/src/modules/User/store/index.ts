@@ -6,7 +6,7 @@ interface IUserState {
   user: IUser | null;
 }
 
-export default class UserSlice {
+class UserSlice {
   private readonly _initialState: IUserState;
 
   constructor() {
@@ -18,7 +18,7 @@ export default class UserSlice {
 
   public createSlice() {
     return createSlice({
-      name: 'auth',
+      name: 'user',
       initialState: this._initialState,
       reducers: {
         setLoading: (state, action: PayloadAction<boolean>) => {
@@ -32,4 +32,6 @@ export default class UserSlice {
   }
 }
 
-export const { setLoading, setUser } = new UserSlice().createSlice().actions;
+const userSlice = new UserSlice().createSlice();
+export const { setLoading, setUser } = userSlice.actions;
+export default userSlice.reducer;

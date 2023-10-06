@@ -2,8 +2,8 @@ import { Pagination, Empty } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '@/store';
 import PostService from '../services';
-import Post from '../components/Book';
-import PostsSkeleton from '../components/BooksSkeleton';
+import Post from '../components/Post';
+import PostsSkeleton from '../components/PostsSkeleton';
 
 const Posts = () => {
   const posts = useAppSelector((state) => state.post.list);

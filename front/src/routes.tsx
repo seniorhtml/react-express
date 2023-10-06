@@ -1,5 +1,5 @@
 import type { RouteObject } from 'react-router-dom';
-import PBooks from '@/pages/PBooks';
+import PPosts from '@/pages/PPosts';
 import PSingle from '@/pages/PSingle';
 import PRegister from '@/pages/PRegister';
 import PLogin from '@/pages/PLogin';
@@ -8,7 +8,7 @@ import PCreate from '@/pages/PCreate';
 const router: RouteObject[] = [
   {
     path: '/',
-    element: <PBooks />,
+    element: <PPosts />,
   },
   {
     path: '/news/:id',

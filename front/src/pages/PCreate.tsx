@@ -1,6 +1,8 @@
-import { Create } from '@/modules/Book';
-function PCreate() {
-  return <Create />;
-}
+import { Create } from '@/modules/Post';
+import React from 'react';
 
-export default PCreate;
+const PCreate = () => {
+  return <Create />;
+};
+
+export default React.memo(PCreate);

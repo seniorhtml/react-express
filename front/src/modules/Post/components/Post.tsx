@@ -1,11 +1,10 @@
 import { EditOutlined, HeartOutlined } from '@ant-design/icons';
 import { Card } from 'antd';
 import { Link } from 'react-router-dom';
-import type { IBook } from '../types';
+import React from 'react';
+import type { IPost } from '../types';
 
-type BookProps = Omit<IBook, 'id'> & { link: string };
-
-function Book({ title, body, image, link }: BookProps) {
+const Post = ({ title, body, image, link }: IPost & { link: string }) => {
   function handleEdit() {
     console.log('edit');
   }
@@ -30,6 +29,6 @@ function Book({ title, body, image, link }: BookProps) {
       </Link>
     </Card>
   );
-}
+};
 
-export default Book;
+export default React.memo(Post);

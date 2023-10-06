@@ -1,20 +1,20 @@
 import SingleSkeleton from '../components/SingleSkeleton';
-import BookService from '../services';
-import { useEffect } from 'react';
+import PostService from '../services';
+import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/store';
 import { useParams } from 'react-router-dom';
 import { EditOutlined, HeartOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
-function Single() {
+const Single = () => {
   const { id } = useParams();
-  const single = useAppSelector((state) => state.book.single);
-  const loading = useAppSelector((state) => state.book.loading);
+  const single = useAppSelector((state) => state.post.single);
+  const loading = useAppSelector((state) => state.post.loading);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!id) return;
-    dispatch(BookService.getBook(id));
+    dispatch(PostService.getSingle(id));
   }, [id, dispatch]);
 
   return (
@@ -44,6 +44,6 @@ function Single() {
       )}
     </div>
   );
-}
+};
 
-export default Single;
+export default React.memo(Single);

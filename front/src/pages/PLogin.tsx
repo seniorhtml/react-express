@@ -1,7 +1,8 @@
-import { Login } from '@/modules/Auth';
+import { Login } from '@/modules/User';
+import React from 'react';
 
-function RLogin() {
+const RLogin = () => {
   return <Login />;
-}
+};
 
-export default RLogin;
+export default React.memo(RLogin);

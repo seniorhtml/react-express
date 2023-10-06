@@ -1,22 +1,20 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Input, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '@/store';
-import BookService from '../services';
-import type { IBook } from '../types';
+import PostService from '../services';
+import type { IPost } from '../types';
 import type { ValidateStatus } from 'antd/lib/form/FormItem';
 
-type CreateBook = Omit<IBook, 'id'>;
-
-function Create() {
+const Create = () => {
   const [form] = Form.useForm();
   const [validateStatus, setValidateStatus] = useState<ValidateStatus>('');
   const dispatch = useAppDispatch();
-  const loading = useAppSelector((state) => state.book.loading);
+  const loading = useAppSelector((state) => state.post.loading);
 
   const onFinish = (values: never) => {
     setValidateStatus('success');
-    dispatch(BookService.createBook(values))
+    dispatch(PostService.createPost(values))
       .then(() => {
         setValidateStatus('success');
         form.resetFields();
@@ -39,7 +37,7 @@ function Create() {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
-        <Form.Item<CreateBook>
+        <Form.Item<IPost>
           name="title"
           rules={[{ required: true, message: 'Please input title!' }]}
           validateStatus={validateStatus}
@@ -48,7 +46,7 @@ function Create() {
           <Input placeholder="Title" />
         </Form.Item>
 
-        <Form.Item<CreateBook>
+        <Form.Item<IPost>
           name="body"
           rules={[{ required: true, message: 'Please input body!' }]}
           validateStatus={validateStatus}
@@ -57,7 +55,7 @@ function Create() {
           <Input.TextArea placeholder="Body" rows={4} />
         </Form.Item>
 
-        <Form.Item<CreateBook>
+        <Form.Item<IPost>
           name="image"
           rules={[{ required: false, message: 'Please choose image!' }]}
           validateStatus={validateStatus}
@@ -80,6 +78,6 @@ function Create() {
       </Form>
     </div>
   );
-}
+};
 
-export default Create;
+export default React.memo(Create);

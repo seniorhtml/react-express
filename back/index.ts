@@ -13,7 +13,6 @@ class Server {
     this.app = app;
     this.PORT = PORT;
     this.DB_URL = DB_URL;
-    this.config();
   }
 
   private config() {
@@ -21,13 +20,14 @@ class Server {
     this.app.use(express.json());
     this.app.use(
       cors({
-        origin: 'http://localhost:5173',
+        origin: 'http://localhost:5173/',
       }),
     );
   }
 
   public async start() {
     try {
+      this.config();
       await mongoose.connect(this.DB_URL);
       this.app.listen(this.PORT, () => console.log('SERVER STARTED ON PORT ' + this.PORT));
     } catch (error) {

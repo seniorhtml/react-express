@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { IPost } from '../types';
 
-export interface IPostState {
+interface IPostState {
   list: IPost[];
   single: IPost | null;
   count: number;
   loading: boolean;
 }
 
-export default class PostSlice {
+class PostSlice {
   private readonly _initialState: IPostState;
 
   constructor() {
@@ -42,4 +42,6 @@ export default class PostSlice {
   }
 }
 
-export const { setList, setSingle, setCount, setLoading } = new PostSlice().createSlice().actions;
+const postSlice = new PostSlice().createSlice();
+export const { setList, setSingle, setCount, setLoading } = postSlice.actions;
+export default postSlice.reducer;

@@ -1,6 +1,7 @@
 import { Card, Skeleton } from 'antd';
+import React from 'react';
 
-function BooksSkeleton() {
+const PostsSkeleton = () => {
   return (
     <div className={'grid grid-cols-4 gap-4'}>
       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item) => (
@@ -15,6 +16,6 @@ function BooksSkeleton() {
       ))}
     </div>
   );
-}
+};
 
-export default BooksSkeleton;
+export default React.memo(PostsSkeleton);

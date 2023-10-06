@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import { useRoutes } from 'react-router-dom';
 import router from '@/routes';
 
-function App() {
+const App = () => {
   const routes = useRoutes(router);
   return (
     <Layout>
@@ -13,6 +13,6 @@ function App() {
       </Layout.Content>
     </Layout>
   );
-}
+};
 
 export default App;

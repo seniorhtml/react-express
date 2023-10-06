@@ -4,7 +4,6 @@ import { axios } from '@/main';
 import type { IPost } from '../types';
 
 export default class PostService {
-
   static getList = createAsyncThunk(
     'post/getList',
     async ({ limit = 12, page = 1 }: { limit?: number; page: number }, { dispatch }) => {
@@ -21,15 +20,18 @@ export default class PostService {
     },
   );
 
-  static getSingle = createAsyncThunk('post/getSingle', async (id: string, { dispatch }) => {
-    try {
-      dispatch(setLoading(true));
-      const { data } = await axios.get(`/posts/${id}`);
-      dispatch(setSingle(data));
-    } finally {
-      dispatch(setLoading(false));
-    }
-  });
+  static getSingle = createAsyncThunk(
+    'post/getSingle',
+    async (id: string, { dispatch }) => {
+      try {
+        dispatch(setLoading(true));
+        const { data } = await axios.get(`/posts/${id}`);
+        dispatch(setSingle(data));
+      } finally {
+        dispatch(setLoading(false));
+      }
+    },
+  );
 
   static createPost = createAsyncThunk(
     'post/createPost',

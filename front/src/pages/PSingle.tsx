@@ -1,7 +1,8 @@
-import { Single } from '@/modules/Book';
+import { Single } from '@/modules/Post';
+import React from 'react';
 
-function PSingle() {
+const PSingle = () => {
   return <Single />;
-}
+};
 
-export default PSingle;
+export default React.memo(PSingle);

@@ -1,7 +1,8 @@
-import { Register } from '@/modules/Auth';
+import { Register } from '@/modules/User';
+import React from 'react';
 
-function PRegister() {
+const PRegister = () => {
   return <Register />;
-}
+};
 
-export default PRegister;
+export default React.memo(PRegister);
