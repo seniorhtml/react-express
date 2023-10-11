@@ -9,7 +9,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { StyleProvider } from '@ant-design/cssinjs';
 
 export const axios = axiosNpm.create({
-  baseURL: 'http://localhost:5555',
+  baseURL: 'http://localhost:4002',
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+  },
 });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

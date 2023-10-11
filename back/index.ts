@@ -1,6 +1,7 @@
 import 'module-alias/register';
 import express, { Application } from 'express';
 import cors from 'cors';
+import timeout from 'connect-timeout';
 import mongoose from 'mongoose';
 import Routes from '@/routes';
 
@@ -15,19 +16,24 @@ class Server {
     this.DB_URL = DB_URL;
   }
 
-  private config() {
+  private routeInit() {
     Routes.init(this.app);
+  }
+
+  private config() {
+    const corsOptions = {
+      origin: 'http://localhost:5173',
+      credentials: true,
+    };
+    this.app.use(cors(corsOptions));
     this.app.use(express.json());
-    this.app.use(
-      cors({
-        origin: 'http://localhost:5173/',
-      }),
-    );
+    this.app.use(timeout('10s'));
   }
 
   public async start() {
     try {
       this.config();
+      this.routeInit();
       await mongoose.connect(this.DB_URL);
       this.app.listen(this.PORT, () => console.log('SERVER STARTED ON PORT ' + this.PORT));
     } catch (error) {
@@ -37,7 +43,12 @@ class Server {
 }
 
 const app: Application = express();
-const PORT = 5555;
+const PORT = 4002;
 const DB_URL = 'mongodb+srv://koka:koka@cluster0.brcavf7.mongodb.net/?retryWrites=true&w=majority';
 const server = new Server(app, PORT, DB_URL);
-server.start();
+
+function startServer(server) {
+  server.start();
+}
+
+startServer(server);

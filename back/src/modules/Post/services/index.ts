@@ -11,7 +11,7 @@ export default class PostService implements IPostService {
   private readonly _model;
 
   constructor() {
-    this._model = new PostModel();
+    this._model = PostModel;
   }
 
   public async getPosts(page = 1, limit = 12) {
@@ -26,10 +26,10 @@ export default class PostService implements IPostService {
     if (!id) {
       throw new Error('не указан ID');
     }
-    return await this._model.findOne({ id });
+    return await this._model.findOne({ _id: id });
   }
 
-  public async createPost(book: IPost) {
-    return await this._model.create(book);
+  public async createPost(post: IPost) {
+    return await this._model.create(post);
   }
 }

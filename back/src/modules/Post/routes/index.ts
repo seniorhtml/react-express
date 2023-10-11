@@ -2,8 +2,8 @@ import { Router } from 'express';
 import PostController from '../controllers';
 
 export default class PostRoutes {
-  private readonly _router ;
-  private readonly _controller;
+  private readonly _router: Router;
+  private readonly _controller: PostController;
 
   constructor() {
     this._router = Router();
@@ -16,8 +16,8 @@ export default class PostRoutes {
   }
 
   private initializeRoutes() {
-    this.router.get('/posts', this._controller.getPosts);
-    this.router.get('/posts/:id', this._controller.getPost);
-    this.router.post('/create/post', this._controller.createPost);
+    this.router.get('/posts', (req, res) => this._controller.getPosts(req, res));
+    this.router.get('/posts/:id', (req, res) => this._controller.getPost(req, res));
+    this.router.post('/create/post', (req, res) => this._controller.createPost(req, res));
   }
 }

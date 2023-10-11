@@ -1,11 +1,11 @@
 import { Avatar, Layout } from 'antd';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const headerLinks = [
   {
     path: '/',
-    label: 'Book',
+    label: 'Posts',
   },
   {
     path: '/create-post',
@@ -14,6 +14,12 @@ const headerLinks = [
 ];
 
 const Header = () => {
+  const navigate = useNavigate();
+  function logout() {
+    localStorage.removeItem('token');
+    navigate('/login');
+  }
+
   return (
     <Layout.Header style={{ height: 'auto' }}>
       <div className={'container flex items-center justify-between py-3'}>
@@ -23,7 +29,9 @@ const Header = () => {
               {item.label}
             </Link>
           ))}
-          <button className={'text-red-600'}>Logout</button>
+          <button className={'text-red-600'} onClick={logout}>
+            Logout
+          </button>
         </div>
         <div className={'flex items-center gap-2'}>
           <h1 className={'!text-white cursor-pointer'}>username</h1>

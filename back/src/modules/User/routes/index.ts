@@ -2,8 +2,8 @@ import { Router } from 'express';
 import UserController from '@/modules/User/controllers';
 
 export default class UserRoutes {
-  private readonly _router;
-  private readonly _controller;
+  private readonly _router: Router;
+  private readonly _controller: UserController;
 
   constructor() {
     this._router = Router();
@@ -16,8 +16,8 @@ export default class UserRoutes {
   }
 
   private initializeRoutes() {
-    this._router.post('/register', this._controller.register);
-    this._router.post('/login', this._controller.login);
-    this._router.get('/user/:username', this._controller.getUser);
+    this._router.post('/register', (req, res) => this._controller.register(req, res));
+    this._router.post('/login', (req, res) => this._controller.login(req, res));
+    this._router.get('/user/:username', (req, res) => this._controller.getUser(req, res));
   }
 }

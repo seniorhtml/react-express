@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import Utils from '@/utils';
 import bcrypt from 'bcrypt';
 import UserService from '../services';
-import type { IUser } from '../models';
 
 interface IUserController {
   register(Request, Response): Promise<any>;
@@ -11,7 +10,7 @@ interface IUserController {
 }
 
 export default class UserController implements IUserController {
-  private readonly _service;
+  private readonly _service: UserService;
 
   constructor() {
     this._service = new UserService();
@@ -25,7 +24,8 @@ export default class UserController implements IUserController {
         return res.status(400).json({ message: 'Такой пользователь уже существует' });
       }
       const newUser = await this._service.createUser(username, password);
-      return res.status(200).json({ username: newUser.username });
+      const token = Utils.generateAccessToken(newUser._id);
+      return res.status(200).json({ token });
     } catch (error) {
       res.status(500).json(error);
     }

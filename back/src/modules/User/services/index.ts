@@ -1,6 +1,6 @@
-import UserModel from '../models';
 import bcrypt from 'bcrypt';
 import type { IUser } from '../models';
+import userModel from '../models';
 
 interface IUserService {
   getUser(string): Promise<IUser>;
@@ -11,11 +11,12 @@ export default class UserService implements IUserService {
   private readonly _model;
 
   constructor() {
-    this._model = new UserModel();
+    this._model = userModel;
   }
 
   public async getUser(username: string) {
-    return await this._model.findOne({ username });
+    const user = await this._model.findOne({ username });
+    return user;
   }
 
   public createUser(username: string, password: string) {

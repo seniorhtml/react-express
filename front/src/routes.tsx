@@ -4,19 +4,31 @@ import PSingle from '@/pages/PSingle';
 import PRegister from '@/pages/PRegister';
 import PLogin from '@/pages/PLogin';
 import PCreate from '@/pages/PCreate';
+import PNotFound from '@/pages/PNotFound';
 
-const router: RouteObject[] = [
+export const privateRoute: RouteObject[] = [
+  {
+    path: '*',
+    element: <PNotFound />,
+  },
   {
     path: '/',
     element: <PPosts />,
   },
   {
-    path: '/news/:id',
+    path: '/posts/:id',
     element: <PSingle />,
   },
   {
-    path: '/news-create',
+    path: '/create-post',
     element: <PCreate />,
+  },
+];
+
+export const publicRoute: RouteObject[] = [
+  {
+    path: '*',
+    element: <PNotFound />,
   },
   {
     path: '/login',
@@ -27,5 +39,3 @@ const router: RouteObject[] = [
     element: <PRegister />,
   },
 ];
-
-export default router;

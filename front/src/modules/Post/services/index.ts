@@ -6,7 +6,7 @@ import type { IPost } from '../types';
 export default class PostService {
   static getList = createAsyncThunk(
     'post/getList',
-    async ({ limit = 12, page = 1 }: { limit?: number; page: number }, { dispatch }) => {
+    async ({ limit = 12, page = 1 }: { limit?: number; page?: number }, { dispatch }) => {
       try {
         dispatch(setLoading(true));
         const { data } = await axios.get('/posts', {

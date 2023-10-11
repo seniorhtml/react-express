@@ -25,7 +25,7 @@ const Single = () => {
         <div>
           <img
             src={'https://picsum.photos/200/200'}
-            alt={single.title}
+            alt={single?.title}
             className={'w-full h-[600px] object-cover'}
           />
           <h1
@@ -33,9 +33,9 @@ const Single = () => {
               'text-3xl font-extrabold text-slate-900 tracking-tight uppercase my-4'
             }
           >
-            {single.title}
+            {single?.title}
           </h1>
-          <p className={'text-lg text-slate-700'}>{single.body}</p>
+          <p className={'text-lg text-slate-700'}>{single?.body}</p>
           <div className={'flex items-center gap-2'}>
             <Button type="primary" icon={<EditOutlined />} />
             <Button type="primary" icon={<HeartOutlined />} />

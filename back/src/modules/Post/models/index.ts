@@ -6,11 +6,8 @@ export interface IPost {
   image: string;
 }
 
-export default class PostModel {
-  constructor() {
-    this.createModel();
-  }
-  private createModel() {
+class PostModel {
+  static createModel() {
     return model<IPost>(
       'post',
       new Schema({
@@ -21,3 +18,7 @@ export default class PostModel {
     );
   }
 }
+
+const postModel = PostModel.createModel();
+
+export default postModel;

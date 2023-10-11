@@ -9,7 +9,8 @@ export default class UserService {
     async (user: IUser, { dispatch }) => {
       try {
         dispatch(setLoading(true));
-        await axios.post(`/auth/register`, user);
+        const { data } = await axios.post(`/auth/register`, user);
+        localStorage.setItem('token', data.token);
       } finally {
         dispatch(setLoading(false));
       }
@@ -19,7 +20,8 @@ export default class UserService {
   static login = createAsyncThunk('user/Login', async (user: IUser, { dispatch }) => {
     try {
       dispatch(setLoading(true));
-      await axios.post(`/auth/login`, user);
+      const { data } = await axios.post(`/auth/login`, user);
+      localStorage.setItem('token', data.token);
     } finally {
       dispatch(setLoading(false));
     }
